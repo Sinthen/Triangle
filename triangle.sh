@@ -22,8 +22,8 @@ ac_gt_b=$(echo "$a + $c > $b" | bc)
 ab_gt_c=$(echo "$a + $b > $c" | bc)
 
 if [ $bc_gt_a -eq 0 -o $ac_gt_b -eq 0 -o $ab_gt_c -eq 0 ]; then
-
 		echo "Не треугольник" >&2;
+		echo "Не треугольник";
 		exit 2
 fi
 
