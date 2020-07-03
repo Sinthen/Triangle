@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -e
 
 test_success() {
   output=$(echo "$1" "$2" "$3" | $APP 2>/dev/null)
@@ -33,12 +33,13 @@ test_success 1 2 3 "Не треугольник"
 max_int32=$(echo 2^32 | bc)
 max_int64=$(echo 2^64 | bc)
 
-test_success max_int32 max_int32 max_int32 "Равносторонний треугольник"
+test_success $max_int32 $max_int32 $max_int32 "Равносторонний треугольник"
 
-test_success max_int64 max_int64 max_int64 "Равносторонний треугольник"
+test_success $max_int64 $max_int64 $max_int64 "Равносторонний треугольник"
 
 if [ $ErrorCount -ne 0 ]; then
 	echo "Количество тестов завершившихся ошибками: $ErrorCount"
+	exit 1
 else
 	echo "Все тесты успешно прошли"
 fi
