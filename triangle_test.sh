@@ -1,7 +1,5 @@
 #!/bin/sh
 
-read APP
-
 test_success() {
   output=$(echo "$1" "$2" "$3" | $APP 2>/dev/null)
   test "$output" = "$4" && { echo "Success;" "test_success("$1" "$2" "$3");"; } || { echo "Fail;" "test_success("$1" "$2" "$3"); \""$output\"" <> "$4";"; ErrorCount=$((ErrorCount+1)); }
@@ -11,6 +9,8 @@ test_fail() {
   output=$(echo "$1" "$2" "$3" | $APP 2>/dev/null)
   test $? -ne 0 && { echo "Success;" "test_fail("$1" "$2" "$3");"; } || { echo "Fail;" "test_fail("$1" "$2" "$3"); "$?" <> 0"; ErrorCount=$((ErrorCount+1)); }
 }
+
+APP="$1"
 
 ErrorCount=0
 
