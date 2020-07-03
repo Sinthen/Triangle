@@ -20,7 +20,11 @@ test_fail 1 -1 1
 
 test_fail 1 1 -1
 
-test_fail d ss 0
+test_fail d 1 1
+
+test_fail 1 d 0
+
+test_fail 1 1 s
 
 test_fail 1 2 3
 
