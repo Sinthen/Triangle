@@ -14,8 +14,6 @@ APP="$1"
 
 ErrorCount=0
 
-test_fail 1 1 1
-
 test_fail -1 1 1
 
 test_fail 1 -1 1
