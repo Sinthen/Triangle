@@ -22,11 +22,11 @@ test_fail 1 1 -1
 
 test_fail d ss 0
 
+test_fail 1 2 3
+
 test_success 1 1 1 "Равносторонний треугольник"
 
 test_success 3 4 5 "Треугольник"
-
-test_success 1 2 3 "Не треугольник"
 
 max_int32=$(echo 2^32 | bc)
 max_int64=$(echo 2^64 | bc)
