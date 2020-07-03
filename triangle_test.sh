@@ -1,4 +1,4 @@
-#!/bin/sh -e
+#!/bin/sh
 
 test_success() {
   output=$(echo "$1" "$2" "$3" | $APP 2>/dev/null)
