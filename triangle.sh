@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -e
 
 read a b c
 
@@ -8,27 +8,31 @@ if ! [[ "$a" =~ $re && "$b" =~ $re && "$c" =~ $re ]]; then
 		exit 2
 fi
 
-if [ $a -le 0 -o $b -le 0 -o $c -le 0 ]; then
+a_gt_0=$(echo "$a > 0" | bc)
+b_gt_0=$(echo "$b > 0" | bc)
+c_gt_0=$(echo "$c > 0" | bc)
+
+if [ $a_gt_0 -eq 0 -o $b_gt_0 -eq 0 -o $c_gt_0 -eq 0 ]; then
 		echo "Длина стороны не может быть меньше либо равна 0" >&2;
 		exit 2
 fi
 
-ab=$(($a + $b))
-ac=$(($a + $c))
-bc=$(($b + $c))
+bc_gt_a=$(echo "$b + $c > $a" | bc)
+ac_gt_b=$(echo "$a + $c > $b" | bc)
+ab_gt_c=$(echo "$a + $b > $c" | bc)
 
-if ! ([ $ab -gt $c -a $ac -gt $b -a $bc -gt $a ]); then
+if [ $bc_gt_a -eq 0 -o $ac_gt_b -eq 0 -o $ab_gt_c -eq 0 ]; then
 
 		echo "Не треугольник" >&2;
 		exit 2
 fi
 
-if [ $a -eq $b -a $b -eq $c ]; then
+if [ $a = $b -a $b = $c ]; then
 		echo "Равносторонний треугольник"
 		exit 0
 fi
 
-if [ $a -eq $b -o $b -eq $c ]; then
+if [ $a = $b -o $b = $c ]; then
 		echo "Равнобедренный трегольник"
 		exit 0
 fi
