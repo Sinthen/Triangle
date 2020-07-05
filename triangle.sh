@@ -31,7 +31,7 @@ if [ $a = $b -a $b = $c ]; then
 		exit 0
 fi
 
-if [ $a = $b -o $b = $c ]; then
+if [ $a = $b -o $b = $c -o $a = $c ]; then
 		echo "Равнобедренный трегольник"
 		exit 0
 fi
