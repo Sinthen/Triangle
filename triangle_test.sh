@@ -14,15 +14,19 @@ APP="$1"
 
 ErrorCount=0
 
-test_fail 1 1 1
-
 test_fail -1 1 1
 
 test_fail 1 -1 1
 
 test_fail 1 1 -1
 
-test_fail d ss 0
+test_fail d 1 1
+
+test_fail 1 d 0
+
+test_fail 1 1 s
+
+test_fail 1 2 3
 
 test_success 1 1 1 "Равносторонний треугольник"
 
@@ -34,17 +38,16 @@ test_success 3 2 2 "Равнобедренный трегольник"
 
 test_success 3 4 5 "Треугольник"
 
-test_success 1 2 3 "Не треугольник"
-
 max_int32=$(echo 2^32 | bc)
 max_int64=$(echo 2^64 | bc)
 
-test_success max_int32 max_int32 max_int32 "Равносторонний треугольник"
+test_success $max_int32 $max_int32 $max_int32 "Равносторонний треугольник"
 
-test_success max_int64 max_int64 max_int64 "Равносторонний треугольник"
+test_success $max_int64 $max_int64 $max_int64 "Равносторонний треугольник"
 
 if [ $ErrorCount -ne 0 ]; then
 	echo "Количество тестов завершившихся ошибками: $ErrorCount"
+	exit 1
 else
 	echo "Все тесты успешно прошли"
 fi

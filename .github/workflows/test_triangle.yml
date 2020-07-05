@@ -11,5 +11,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       
-    - name: run a test for triangle
+    - name: Change permission test
+      run: chmod +x ./triangle_test.sh
+      
+    - name: Change permission app
+      run: chmod +x ./triangle.sh
+        
+    - name: Run a test for triangle
       run: ./triangle_test.sh ./triangle.sh
